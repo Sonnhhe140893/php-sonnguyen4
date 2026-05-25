@@ -37,7 +37,7 @@ use Illuminate\Support\Str;
     </div>
 
     <footer>
-        Mini CMS nhỏ gọn — giao diện dễ nhìn, quản lý nhanh chóng.
+       Sơnnguyen4 - {{ date('Y') }}
     </footer>
 </div>
 @endsection

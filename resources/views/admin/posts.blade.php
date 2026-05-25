@@ -20,9 +20,9 @@
     </header>
 
     @if (session('success'))
-        <div class="alert" style="background:#d1fae5; color:#065f46; border-color:#a7f3d0;">
-            {{ session('success') }}
-        </div>
+    <div class="alert" style="background:#d1fae5; color:#065f46; border-color:#a7f3d0;">
+        {{ session('success') }}
+    </div>
     @endif
 
     <section class="card form-card">
@@ -46,32 +46,38 @@
     <section>
         <h2>Danh sách bài viết</h2>
         @forelse ($posts as $post)
-            <div class="card">
-                <form method="post" class="form-grid" action="{{ route('admin.posts.update', $post) }}">
-                    @csrf
-                    @method('PUT')
-                    <label>
-                        Tiêu đề
-                        <input type="text" name="title" value="{{ old('title', $post->title) }}">
-                    </label>
-                    <label>
-                        Nội dung
-                        <textarea name="content">{{ old('content', $post->content) }}</textarea>
-                    </label>
-                    <div class="actions">
+        <div class="card">
+            <form method="post" class="form-grid" action="{{ route('admin.posts.update', $post) }}">
+                @csrf
+                @method('PUT')
+                <label>
+                    Tiêu đề
+                    <input type="text" name="title" value="{{ old('title', $post->title) }}">
+                </label>
+                <label>
+                    Nội dung
+                    <textarea name="content">{{ old('content', $post->content) }}</textarea>
+                </label>
+                <div class="actions">
+                    <form method="post" action="{{ route('admin.posts.update', $post) }}">
+                        @csrf
+                        @method('PUT')
                         <button type="submit">Lưu</button>
-                    </div>
-                </form>
-                <form method="post" action="{{ route('admin.posts.destroy', $post) }}" onsubmit="return confirm('Xóa bài viết này?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="button secondary">Xóa</button>
-                </form>
-            </div>
+                    </form>
+
+                    <form method="post"
+                        action="{{ route('admin.posts.destroy', $post) }}"
+                        onsubmit="return confirm('Xóa bài viết này?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="button secondary">Xóa</button>
+                    </form>
+                </div>
+        </div>
         @empty
-            <div class="card">
-                <p>Chưa có bài viết nào.</p>
-            </div>
+        <div class="card">
+            <p>Chưa có bài viết nào.</p>
+        </div>
         @endforelse
     </section>
 

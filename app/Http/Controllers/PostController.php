@@ -23,7 +23,7 @@ class PostController extends Controller
         return view('posts.show', compact('post'));
     }
 
-    public function showLogin(): View
+    public function showLogin(): View|RedirectResponse
     {
         if (session('admin_logged_in')) {
             return redirect()->route('admin.posts');
